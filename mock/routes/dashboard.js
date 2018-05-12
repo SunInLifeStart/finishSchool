@@ -4,23 +4,15 @@ module.exports = {
     list: [
       {
         id: 1,
-        img: '../../assets/carouselOne.jpg'
+        img: 'static/images/one.png'
       },
       {
         id: 2,
-        img: '../../assets/carouselTwo.jpg'
-      },
-      {
-        id: 3,
-        img: '../../assets/carouselThree.jpg'
-      },
-      {
-        id: 4,
-        img: '../../assets/carouselFour.jpg'
+        img: 'static/images/two.png'
       },
       {
         id: 5,
-        img: '../../assets/carouselFive.jpg'
+        img: 'static/images/five.png'
       }
     ]
   },

@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="8">
+      <el-col :span="24">
         <div class="grid-content bg-purple">
-          <el-carousel :interval="4000" height="200px">
+          <el-carousel :interval="4000" height="300px">
             <el-carousel-item v-for="item in $dashboard.headlines" :key="item.id">
-              <img :src="item.img" />
+              <img :src="item.img" style="width:100%; height: 300px" />
             </el-carousel-item>
           </el-carousel>
         </div>

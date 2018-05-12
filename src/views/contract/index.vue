@@ -15,11 +15,11 @@
                 </el-form-item>
               </el-col>
               <el-col :span="5">
-                <el-form-item label="关键词:">
-                  <el-tooltip content="支持：状态、付款主题" placement="bottom" >
-                      <el-input v-model="keywords.word"  size="small" placeholder="清输入"></el-input>
-                  </el-tooltip>
-                </el-form-item>
+                <!--<el-form-item label="关键词:">-->
+                  <!--<el-tooltip content="支持：状态、付款主题" placement="bottom" >-->
+                      <!--<el-input v-model="keywords.word"  size="small" placeholder="清输入"></el-input>-->
+                  <!--</el-tooltip>-->
+                <!--</el-form-item>-->
               </el-col>
                 <el-col :span="5">
               </el-col>
@@ -289,17 +289,14 @@ export default {
       })
     },
     findContracts() {
-      // if (this.form.organization === '') {
-      //   this.$alert('组织机构不能为空！', '提示', {
-      //     confirmButtonText: '确定',
-      //     callback: action => {
-      //     }
-      //   })
-      // } else {
       this.FindContracts(this.keywords).then((data) => {
-        this.list = data.data
+        if(this.keywords.organization){
+          let lists = data.data.filter((item)=> item.organization ===this.keywords.organization)
+          this.list = lists
+        } else {
+          this.list = data.data
+        }
       })
-      // }
     },
     showContract(row) {
       var id = row.contractId
