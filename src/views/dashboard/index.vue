@@ -15,26 +15,20 @@
           <el-col :span="12">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span @click="goToDo">待办事项</span>
+                <span>媒体报道</span>
               </div>
               <el-table
                 :data="tableData"
+                :showHeader="false"
                 style="width: 100%">
                 <el-table-column
                   prop="type"
-                  label="类型">
+                  width="100"
+                  label="人物">
                 </el-table-column>
                 <el-table-column
                   prop="address"
-                  label="主题">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="经办人">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="">
+                  label="事迹">
                 </el-table-column>
               </el-table>
             </el-card>
@@ -42,17 +36,15 @@
           <el-col :span="12">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span @click="goNews">公告栏</span>
+                <span>行业动态</span>
               </div>
               <el-table
                 :data="$dashboard.news"
+                :showHeader="false"
                 style="width: 100%">
                 <el-table-column
-                  prop="belongscategory"
-                  label="">
-                </el-table-column>
-                <el-table-column
                   prop="newstitle"
+                  width="200"
                   label="">
                 </el-table-column>
                 <el-table-column
@@ -83,17 +75,14 @@ export default {
   data() {
     return {
       tableData: [{
-        type: '合同',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
+        type: '谭龙',
+        address: '“ETCP的理念很简单，给钱的投资人都是好的投资人。”谭龙说，“创业公司在钱面前不能挑三拣四，现在风光不代表一直风光，永远都要深挖洞广积粮。”',
       }, {
-        type: '预算',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
+        type: '接送孩子',
+        address: '但凡是有车一族，开车的时候都遇见过这样的事：你兜兜转转找了半天停车位，好不容易等到了一个空位，正打算施展从科目二磨练而来的倒车入库神技，却不料半路杀出个程咬金，一头扎进你看好的车位，是不是感觉佛也有火'
       }, {
-        type: '成本',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
+        type: '摩拜互怼',
+        address: '9月22日，中国交通运输协会共享出行分会成立大会暨第一届会员代表大会在北京举行，我国首家综合交通领域共享出行社团组织的正式成立。会上，来自共享出行行业内的多家巨头参与其中，摩拜单车CEO王晓峰、滴滴C',
       }]
     }
   },

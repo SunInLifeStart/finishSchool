@@ -6,20 +6,15 @@
             <el-row :gutter="0">
               <el-col :span="5">
                 <el-form-item label="车牌号:">
-                  <el-input v-model="keywords.organization"  size="small" placeholder="请输入" />
+                  <el-input v-model="keywords.entiId"  size="small" placeholder="请输入" />
                 </el-form-item>
               </el-col>
               <el-col :span="5">
                 <el-form-item label="时间:">
-                  <el-input v-model="keywords.project"  size="small" placeholder="请输入" />
+                  <el-input v-model="keywords.pointState"  size="small" placeholder="请输入" />
                 </el-form-item>
               </el-col>
               <el-col :span="5">
-                <!--<el-form-item label="关键词:">-->
-                  <!--<el-tooltip content="支持：状态、付款主题" placement="bottom" >-->
-                      <!--<el-input v-model="keywords.word"  size="small" placeholder="清输入"></el-input>-->
-                  <!--</el-tooltip>-->
-                <!--</el-form-item>-->
               </el-col>
                 <el-col :span="5">
               </el-col>
@@ -29,17 +24,9 @@
             </el-row>
           </el-form>
       </div>
-       <div class="el-alert--success reminderBorder">
-          <span class="reminder">合同数 </span><span class="reminderNum"> {{$contract.pagination.total | currency(2,',')}}</span>
-          <span class="reminder">有效签约金额 </span><span class="reminderNum">3,036,464,000</span>
-          <span class="reminder">累计变更金额 </span><span class="reminderNum">20,631.13</span>
-          <span class="reminder">预估变更金额 </span><span class="reminderNum">141,509.43</span>
-          <span class="reminder">已付款金额 </span><span class="reminderNum">3,036,464,000</span>
-      </div>
       <!-- 台账列表 -->
        <el-row :gutter="20" style="margin-top: 20px;">
           <el-col :span="24">
-              <el-button size="mini" class="btnRight" icon="el-icon-document" type="text" >新增</el-button>
           </el-col>
        </el-row>
        <div>
@@ -47,42 +34,26 @@
             border
             size="small"
             :default-sort="{prop: 'approvalStatus', order: 'descending'}"
-            :data="list"
+            :data="$contract.contracts"
             :row-class-name="tableRowClassName"
-            @row-dblclick="showContract($event)"
             :cell-style="({row, column, rowIndex, columnIndex}) => (columnIndex === 3||columnIndex === 0)?{'text-align': 'center',padding: '3px'}:{padding: '3px'}"
             :header-cell-style="{background:'#efefe0', 'text-align': 'center', color: '#a08e6e',fontSize:'13px',padding:'3px 0',fontWeight:'500'}"
               >
               <el-table-column prop="contractId" label="序号" fixed width="100"></el-table-column>
-              <el-table-column sortable prop="entiId" fixed label="审批状态" width="110"></el-table-column>
-              <el-table-column sortable prop="pointState" fixed label="结算状态" width="115"></el-table-column>
-              <el-table-column sortable prop="projectName" fixed label="项目名称" width="200"></el-table-column>
-              <el-table-column sortable prop="contractName" fixed label="合同名称" width="200">
+              <el-table-column sortable prop="entiId" fixed label="车牌号" width="110"></el-table-column>
+              <el-table-column sortable prop="pointState" fixed label="时间" width="115"></el-table-column>
+              <el-table-column sortable prop="projectName" fixed label="地点" width="200"></el-table-column>
+              <el-table-column sortable prop="contractName" fixed label="姓名" width="200">
                 <template slot-scope="scope">
                   <el-button type="text" @click="showContract(scope.row)">{{scope.row.contractName}}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column sortable prop="contractAmt" fixed label="有效签约金额" width="130"></el-table-column>
+              <el-table-column sortable prop="contractAmt" fixed label="金额" width="130"></el-table-column>
               <el-table-column sortable prop="ContentPlaceHolderxGridExpensePlan_1" label="累计变更金额" width="200"></el-table-column>
               <el-table-column sortable prop="ContentPlaceHolderxGridExpensePlan_2" label="预估变更金额" width="200"></el-table-column>
               <el-table-column sortable prop="ContentPlaceHolderxGridExpensePlan_5" label="付款比例" width="100"></el-table-column>
           </el-table>
        </div>
-      <!-- 分页 -->
-       <div v-show="this.list.length>1">
-           <el-pagination
-                style=""
-                small
-                class="paginate"
-                :page-sizes="[10,20,30]"
-                :page-size="100"
-                background
-                @size-change="pageSizeChange"
-                @current-change='goPage'
-                layout="total, sizes, prev, pager, next"
-                :total="1000">
-            </el-pagination>
-      </div>
      </div>
 </template>
 
@@ -93,6 +64,8 @@ export default {
     return {
       //  查询条件
       keywords: {
+        pointState: '',
+        entiId: '',
         pageSize: '10', // 每页记录条数
         pageNum: '1', // 页数
         organization: '', // 组织机构

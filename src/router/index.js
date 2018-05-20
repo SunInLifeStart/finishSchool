@@ -69,9 +69,8 @@ export const asyncRouterMap = [
     path: '/contract',
     component: Layout,
     name: '停车场管理',
+    icon: 'zonghe',
     redirect: '/contract/',
-    icon: 'zujian',
-    meta: { role: ['contract'] },
     children: [
       {
         path: '',
